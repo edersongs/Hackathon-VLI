@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org">
+
+<aside class="main-sidebar" th:fragment="leftMenu">
+	<section class="sidebar">
+		
+		<ul class="sidebar-menu" data-widget="tree">
+			<li class="header">Menu</li>
+			
+			<li>
+				<a th:href="@{/}">
+		            <i class="fa fa-user-o"></i> <span>Menu 1</span>
+		            <span class="pull-right-container">
+		              <i class="fa fa-angle-left pull-right"></i>
+		            </span>
+		        </a>
+			 </li>
+			 
+			 <li>
+				<a th:href="@{/}">
+		            <i class="fa fa-history"></i> <span>Menu 2</span>
+		            <span class="pull-right-container">
+		              <i class="fa fa-angle-left pull-right"></i>
+		            </span>
+		        </a>
+			 </li>
+			 
+			 <li>
+				<a th:href="@{/}">
+		            <i class="fa fa-newspaper-o"></i> <span>Menu 3</span>
+		            <span class="pull-right-container">
+		              <i class="fa fa-angle-left pull-right"></i>
+		            </span>
+		        </a>
+			 </li>
+			 
+		</ul>
+	</section>
+</aside>
+</html>
