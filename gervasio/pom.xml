@@ -41,6 +41,7 @@
 		<java.version>1.8</java.version>
 		<thymeleaf.version>3.0.3.RELEASE</thymeleaf.version>
 		<thymeleaf-layout-dialect.version>2.2.1</thymeleaf-layout-dialect.version>
+		<zxing.version>3.2.0</zxing.version>
 	</properties>
 
 	<dependencies>
@@ -90,6 +91,13 @@
 			<groupId>nz.net.ultraq.thymeleaf</groupId>
 			<artifactId>thymeleaf-layout-dialect</artifactId>
 		</dependency>
+		
+		<dependency>
+			<groupId>com.google.zxing</groupId>
+			<artifactId>javase</artifactId>
+			<version>${zxing.version}</version>
+		</dependency>
+		
 	</dependencies>
 
 	<build>
