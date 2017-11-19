@@ -21,17 +21,32 @@
 	</section>
 
 	<section class="content">
+		<div class="row">
+		<div class="col-md-12">	
 		
 			<div class="box box-default">
 				
-				<div class="box-body">
-						
-					<div id="regions_div" style="width: 900px; height: 500px;"></div>
+				 <div class="box-body">
+					<div id="regions_div" style="width: 700px; height: 300px;"></div>
           			
-				</div>
+				</div> 
 				
 			</div>
 		
+		</div>
+		
+		<div class="col-md-12">
+			
+			<div class="box box-default">
+				
+				<div class="box-body">
+          				<div id="map_div"></div>
+				</div>
+				
+			</div>
+			
+		</div> 
+		</div>
 	</section>
 </section>
 	
@@ -58,7 +73,8 @@
 	            ['Araguari', 80],
 	            ['Rio de Janeiro', 1000],
 	            ['Amazonas', 40],
-	            ['Salvador', 30]
+	            ['Salvador', 30],
+	            ['Santa Inês', 300]
 	        ]);
 	
 	        var options = {
@@ -75,6 +91,32 @@
 	      }
 	    </script>
 		
+		<script type="text/javascript">
+		    google.charts.load('current', { 'packages': ['map'] });
+		    google.charts.setOnLoadCallback(drawMap);
+		
+		    function drawMap() {
+	    	var data = google.visualization.arrayToDataTable([
+	            ['Lat', 'Long', 'Name'],
+	            [-18.918999, -48.277950, 'Uberlândia'],
+	            [-16.359008, -46.899957, 'Unaí'],
+	            [-19.713535, -47.983625, 'Uberaba'],
+	            [-23.567387, -46.570383, 'São Paulo'],
+	            [-9.660822, -35.701630, 'Maceió'],
+	            [-13.014772, -38.488061, 'Salvador'],
+	            [-13.298687, -39.827605, 'Santa Inês']
+	          ]);
+		
+		    var options = {
+		      showTooltip: true,
+		      showInfoWindow: true 
+		    };
+		
+		    var map = new google.visualization.Map(document.getElementById('map_div'));
+		
+		    map.draw(data, options);
+		  };
+  	  </script>
 	</th:block>
 	
 </body>
