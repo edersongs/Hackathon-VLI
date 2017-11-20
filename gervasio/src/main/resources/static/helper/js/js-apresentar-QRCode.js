@@ -13,7 +13,7 @@ function onClickGerarQr() {
 	var tamanhoDiditado = $('#tamanhoID').val();
 	
 	if (valorDiditado != null && tamanhoDiditado != null) {
-		$('#dvQR').html('<img src="gerarQR?texto='+valorDiditado+'&tamanho='+parseInt(tamanhoDiditado)+'">');
+		$('#dvQR').html('<img src="ativos/gerarQR?texto='+valorDiditado+'&tamanho='+parseInt(tamanhoDiditado)+'">');
 	}
 	
 }

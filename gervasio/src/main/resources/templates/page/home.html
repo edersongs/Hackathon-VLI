@@ -13,7 +13,7 @@
 	
 	<section class="content-header">
 		<h1>
-			Ativos <small>Envio de ativos</small>
+			DashBoard <small>Demostrativo</small>
 		</h1>
 		<ol class="breadcrumb">
 			<li><a href="#"><i class="fa fa-dashboard"></i></a></li>
@@ -21,31 +21,97 @@
 	</section>
 
 	<section class="content">
+		
 		<div class="row">
-		<div class="col-md-12">	
 		
-			<div class="box box-default">
-				
-				 <div class="box-body">
-					<div id="regions_div" style="width: 700px; height: 300px;"></div>
-          			
-				</div> 
-				
-			</div>
+			<div class="col-lg-3 col-xs-6">
+	          <div class="small-box bg-red">
+	            <div class="inner">
+	              <h2></h2>
+	
+	              <p>Valor 1</p>
+	            </div>
+	            <!-- <div class="icon">
+	              <i class="fa fa-calculator"></i>
+	            </div> -->
+	            <a href="#" class="small-box-footer">Mais Informações <i class="fa fa-arrow-circle-right"></i></a>
+	          </div>
+	        </div>
+		        
+	        <div class="col-lg-3 col-xs-6">
+	          <div class="small-box bg-yellow">
+	            <div class="inner">
+	              <h2></h2>
+	
+	              <p>Valor 2</p>
+	            </div>
+	            <!-- <div class="icon">
+	              <i class="fa fa-plus"></i>
+	            </div> -->
+	            <a href="#" class="small-box-footer">Mais Informações <i class="fa fa-arrow-circle-right"></i></a>
+	          </div>
+	        </div>
+
+	        <div class="col-lg-3 col-xs-6">
+	          <div class="small-box bg-green">
+	            <div class="inner">
+	              <h2></h2>
+	
+	              <p>Valor 3</p>
+	            </div>
+	            <!-- <div class="icon">
+	              <i class="fa fa-usd"></i>
+	            </div> -->
+	            <a href="#" class="small-box-footer">Mais Informações <i class="fa fa-arrow-circle-right"></i></a>
+	          </div>
+	        </div>
+
+	        <div class="col-lg-3 col-xs-6">
+	          <div class="small-box bg-aqua">
+	            <div class="inner">
+	              <h2></h2>
+	
+	              <p>Valor 4</p>
+	            </div>
+	            <!-- <div class="icon">
+	              <i class="fa fa-credit-card"></i>
+	            </div> -->
+	            <a href="#" class="small-box-footer">Mais Informações <i class="fa fa-arrow-circle-right"></i></a>
+	          </div>
+	   		</div>
 		
-		</div>
-		
-		<div class="col-md-12">
+			<div class="col-md-6">	
 			
-			<div class="box box-default">
+				<div class="box box-default">
+					
+					<div class="box-header with-border">
+		            	<h3 class="box-title">Destinatários de ativos modelo 1</h3>		            
+	              	</div>
+	              	
+					 <div class="box-body">
+						<div id="regions_div" style="height: 300px;"></div>	          			
+					</div> 
+					
+				</div>
+			
+			</div>
+			
+			<div class="col-md-6">
 				
-				<div class="box-body">
-          				<div id="map_div"></div>
+				<div class="box box-default">
+					
+					<div class="box-header with-border">
+		            	<h3 class="box-title">Destinatários de ativos modelo 2</h3>		            
+	              	</div>
+	              	
+					<div class="box-body">
+	          		   <div id="map_div" style="height: 300px;"></div>
+					</div>
+					
 				</div>
 				
-			</div>
+			</div> 
 			
-		</div> 
 		</div>
 	</section>
 </section>
@@ -64,8 +130,7 @@
 	
 	      function drawRegionsMap() {
 	        var data = google.visualization.arrayToDataTable([
-	        	['State', 'Views'],
-	            ['Sao Paulo', 300],
+	        	['State', 'Total	'],
 	            ['Araraguara', 100],
 	            ['Campinas', 300],
 	            ['Belo Horizonte', 90],
@@ -73,16 +138,16 @@
 	            ['Araguari', 80],
 	            ['Rio de Janeiro', 1000],
 	            ['Amazonas', 40],
-	            ['Salvador', 30],
-	            ['Santa Inês', 300]
+	            ['Salvador', 30]
+
 	        ]);
 	
 	        var options = {
                 region: 'BR',
-                displayMode: 'markers',
-                sizeAxis: { minValue: 0, maxValue: 100 },
-                colorAxis: {colors: ['#00853f', 'black', '#e31b23']},
-                defaultColor: '#006400'
+                displayMode: 'markers',               
+                colorAxis: {colors: ['#00853f', '#90CAF9', '#e31b23']},
+                backgroundColor: '#DDE3E7',
+                
             };
 	
 	        var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
@@ -98,7 +163,7 @@
 		    function drawMap() {
 	    	var data = google.visualization.arrayToDataTable([
 	            ['Lat', 'Long', 'Name'],
-	            [-18.918999, -48.277950, 'Uberlândia'],
+	            [-18.918999, -48.277950, 'Uberlândia Total 1.230,00'],
 	            [-16.359008, -46.899957, 'Unaí'],
 	            [-19.713535, -47.983625, 'Uberaba'],
 	            [-23.567387, -46.570383, 'São Paulo'],
@@ -106,17 +171,23 @@
 	            [-13.014772, -38.488061, 'Salvador'],
 	            [-13.298687, -39.827605, 'Santa Inês']
 	          ]);
-		
+	    	 
 		    var options = {
 		      showTooltip: true,
-		      showInfoWindow: true 
+		      showInfoWindow: true,
+		      useMapTypeControl: true,
+		      zoomLevel: 5,
+		      enableScrollWheel: true,
+		      mapType: 'normal',
+		      
 		    };
-		
+			
 		    var map = new google.visualization.Map(document.getElementById('map_div'));
-		
+			
 		    map.draw(data, options);
 		  };
   	  </script>
+  	 
 	</th:block>
 	
 </body>
