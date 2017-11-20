@@ -17,6 +17,7 @@ public class MovimentacaoEstoque {
 	private SubInventario subInventarioOrigem;
 	private Filial filialDestino;
 	private SubInventario subInventarioDestino;
+	private TipoMovimentacao tipoMovimentacao;
 
 	public Long getCodigo() {
 		return codigo;
@@ -64,6 +65,14 @@ public class MovimentacaoEstoque {
 
 	public void setSubInventarioDestino(SubInventario subInventarioDestino) {
 		this.subInventarioDestino = subInventarioDestino;
+	}
+	
+	public TipoMovimentacao getTipoMovimentacao() {
+		return tipoMovimentacao;
+	}
+	
+	public void setTipoMovimentacao(TipoMovimentacao tipoMovimentacao) {
+		this.tipoMovimentacao = tipoMovimentacao;
 	}
 
 }
