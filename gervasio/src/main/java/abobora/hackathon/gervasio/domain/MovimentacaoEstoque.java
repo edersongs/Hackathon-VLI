@@ -1,11 +1,9 @@
 package abobora.hackathon.gervasio.domain;
 
 /**
- * @author Eduardo Silva Rosa
- *		   edus.silva.rosa@gmail.com
- *		   linkedin.com/in/eduardo-rosa
- *	   	   https://github.com/edusr
- *	       + 55 (34) 9 9179-4411	
+ * @author Eduardo Silva Rosa edus.silva.rosa@gmail.com
+ *         linkedin.com/in/eduardo-rosa https://github.com/edusr + 55 (34) 9
+ *         9179-4411
  *
  */
 
@@ -18,6 +16,7 @@ public class MovimentacaoEstoque {
 	private Filial filialDestino;
 	private SubInventario subInventarioDestino;
 	private TipoMovimentacao tipoMovimentacao;
+	private Long quantidade;
 
 	public Long getCodigo() {
 		return codigo;
@@ -66,13 +65,21 @@ public class MovimentacaoEstoque {
 	public void setSubInventarioDestino(SubInventario subInventarioDestino) {
 		this.subInventarioDestino = subInventarioDestino;
 	}
-	
+
 	public TipoMovimentacao getTipoMovimentacao() {
 		return tipoMovimentacao;
 	}
-	
+
 	public void setTipoMovimentacao(TipoMovimentacao tipoMovimentacao) {
 		this.tipoMovimentacao = tipoMovimentacao;
+	}
+
+	public Long getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(Long quantidade) {
+		this.quantidade = quantidade;
 	}
 
 }

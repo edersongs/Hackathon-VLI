@@ -14,6 +14,7 @@ public class Estoque {
 	private Filial filial;
 	private SubInventario subInventario;
 	private Long quantidade;
+	private Long quantidadeReserva;
 
 	public Modelo getModelo() {
 		return modelo;
@@ -45,6 +46,14 @@ public class Estoque {
 
 	public void setQuantidade(Long quantidade) {
 		this.quantidade = quantidade;
+	}
+	
+	public Long getQuantidadeReserva() {
+		return quantidadeReserva;
+	}
+	
+	public void setQuantidadeReserva(Long quantidadeReserva) {
+		this.quantidadeReserva = quantidadeReserva;
 	}
 
 }
