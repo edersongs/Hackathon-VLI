@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import abobora.hackathon.gervasio.domain.Ativo;
-import abobora.hackathon.gervasio.repository.AtivoRepositorio;
+import abobora.hackathon.gervasio.repository.AtivoRepository;
 import abobora.hackathon.gervasio.service.ImageService;
 
 /**
@@ -31,7 +31,7 @@ import abobora.hackathon.gervasio.service.ImageService;
 public class AtivosController {
 
 	@Autowired private ImageService imageSerice;
-	@Autowired private AtivoRepositorio ativoRepositorio;
+	@Autowired private AtivoRepository ativoRepository;
 	
 	@GetMapping
 	public ModelAndView principal() {
@@ -61,7 +61,7 @@ public class AtivosController {
 		
 		try {
 		
-			return ResponseEntity.ok().body(ativoRepositorio.findAll());
+			return ResponseEntity.ok().body(ativoRepository.findAll());
 		
 		} catch (Exception ex) {
 			throw new InternalError("Erro ao gerar QRCode!", ex);

@@ -3,7 +3,7 @@ package abobora.hackathon.gervasio.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import abobora.hackathon.gervasio.domain.MovimentacaoEstoque;
+import abobora.hackathon.gervasio.domain.Ativo;
 
 /**
  * @author Eduardo Silva Rosa
@@ -14,6 +14,6 @@ import abobora.hackathon.gervasio.domain.MovimentacaoEstoque;
  *
  */
 @Repository
-public interface MovimentacaoRepositorio extends JpaRepository<MovimentacaoEstoque, Long>{
+public interface AtivoRepository extends JpaRepository<Ativo, Long>{
 
 }

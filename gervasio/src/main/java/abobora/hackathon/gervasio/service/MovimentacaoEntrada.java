@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import abobora.hackathon.gervasio.domain.MovimentacaoEstoque;
 import abobora.hackathon.gervasio.repository.EstoqueRepository;
-import abobora.hackathon.gervasio.repository.MovimentacaoRepositorio;
+import abobora.hackathon.gervasio.repository.MovimentacaoRepository;
 
 /**
  * @author Eduardo Silva Rosa
@@ -19,14 +19,14 @@ import abobora.hackathon.gervasio.repository.MovimentacaoRepositorio;
 public class MovimentacaoEntrada implements MovimentacaoEstoqueService{
 	
 	@Autowired private EstoqueRepository estoqueRepository;
-	@Autowired private MovimentacaoRepositorio movimentacaoRepositorio;
+	@Autowired private MovimentacaoRepository movimentacaoRepository;
 	
 	@Override
 	public void movimentarEstoque(MovimentacaoEstoque movimentacaoEstoque) {
 		// incrementar estoque
 		estoqueRepository.incrementarEstoque(movimentacaoEstoque);
 		// salvar movimentacao
-		movimentacaoRepositorio.save(movimentacaoEstoque);
+		movimentacaoRepository.save(movimentacaoEstoque);
 	}
 
 }
