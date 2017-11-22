@@ -1,6 +1,7 @@
 package abobora.hackathon.gervasio.service;
 
 import abobora.hackathon.gervasio.domain.MovimentacaoEstoque;
+import abobora.hackathon.gervasio.exceptions.MovimentacaoExcpetion;
 
 /**
  * @author Eduardo Silva Rosa
@@ -12,6 +13,6 @@ import abobora.hackathon.gervasio.domain.MovimentacaoEstoque;
  */
 public interface MovimentacaoEstoqueService {
 	
-	public void movimentarEstoque(MovimentacaoEstoque movimentacaoEstoque);
+	public void movimentarEstoque(MovimentacaoEstoque movimentacaoEstoque) throws MovimentacaoExcpetion;
 
 }
