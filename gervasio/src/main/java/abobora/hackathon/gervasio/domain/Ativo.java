@@ -21,7 +21,7 @@ import javax.persistence.Table;
 
 @SuppressWarnings("serial")
 @Table
-@Entity
+@Entity(name="tativo")
 public class Ativo implements Serializable{
 	private Long codigo;
 	private String descricao;

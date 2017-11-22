@@ -13,7 +13,7 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table
+@Table(name="tmodelo")
 public class Modelo {
 	
 	private Long codigo;

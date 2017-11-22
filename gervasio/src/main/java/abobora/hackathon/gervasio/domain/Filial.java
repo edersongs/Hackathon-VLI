@@ -13,7 +13,7 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table
+@Table(name="tfilial")
 public class Filial {
 	
 	private Long codigo;
