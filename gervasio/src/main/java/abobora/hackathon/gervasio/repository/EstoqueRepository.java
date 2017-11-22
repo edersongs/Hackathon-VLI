@@ -14,6 +14,6 @@ import abobora.hackathon.gervasio.domain.Estoque;
  *
  */
 @Repository
-public interface EstoqueRepositorio extends JpaRepository<Estoque, Long>,EstoqueDAO{
+public interface EstoqueRepository extends JpaRepository<Estoque, Long>, EstoqueRepositoryDAO{
 
 }

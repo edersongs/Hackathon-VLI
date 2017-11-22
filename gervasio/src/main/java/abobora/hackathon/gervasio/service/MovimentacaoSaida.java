@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import abobora.hackathon.gervasio.domain.Estoque;
 import abobora.hackathon.gervasio.domain.MovimentacaoEstoque;
 import abobora.hackathon.gervasio.exceptions.MovimentacaoExcpetion;
-import abobora.hackathon.gervasio.repository.EstoqueRepositorio;
+import abobora.hackathon.gervasio.repository.EstoqueRepository;
 import abobora.hackathon.gervasio.repository.MovimentacaoRepositorio;
 
 /**
@@ -20,7 +20,7 @@ import abobora.hackathon.gervasio.repository.MovimentacaoRepositorio;
 public class MovimentacaoSaida implements MovimentacaoEstoqueService {
 
 	@Autowired
-	private EstoqueRepositorio estoqueRepositorio;
+	private EstoqueRepository estoqueRepository;
 	@Autowired
 	private MovimentacaoRepositorio movimentacaoRepositorio;
 
@@ -28,17 +28,17 @@ public class MovimentacaoSaida implements MovimentacaoEstoqueService {
 	public void movimentarEstoque(MovimentacaoEstoque movimentacaoEstoque) throws MovimentacaoExcpetion {
 
 		Estoque estoqueConsulta = new Estoque();
-		estoqueConsulta.setFilial(movimentacaoEstoque.getFilialOrigem());
-		estoqueConsulta.setSubInventario(movimentacaoEstoque.getSubInventarioDestino());
-		estoqueConsulta.setModelo(movimentacaoEstoque.getModelo());
+		estoqueConsulta.getEstoqueID().setFilial(movimentacaoEstoque.getFilialOrigem());
+		estoqueConsulta.getEstoqueID().setSubInventario(movimentacaoEstoque.getSubInventarioDestino());
+		estoqueConsulta.getEstoqueID().setModelo(movimentacaoEstoque.getModelo());
 
 		Example<Estoque> example = Example.of(estoqueConsulta);
 
-		Estoque estoque = estoqueRepositorio.findOne(example);
+		Estoque estoque = estoqueRepository.findOne(example);
 
 		if (estoque.getQuantidade() - estoque.getQuantidadeReserva() > movimentacaoEstoque.getQuantidade()) {
 			// incrementar estoque
-			estoqueRepositorio.decrementarEstoque(movimentacaoEstoque);
+			estoqueRepository.decrementarEstoque(movimentacaoEstoque);
 			// salvar movimentacao
 			movimentacaoRepositorio.save(movimentacaoEstoque);
 		}else {

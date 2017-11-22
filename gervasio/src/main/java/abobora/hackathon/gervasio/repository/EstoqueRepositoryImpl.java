@@ -6,7 +6,6 @@ import javax.persistence.PersistenceContext;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import abobora.hackathon.gervasio.domain.MovimentacaoEstoque;
 
@@ -19,11 +18,12 @@ import abobora.hackathon.gervasio.domain.MovimentacaoEstoque;
  *
  */
 @Component
-public class EstoqueDAOImpl implements EstoqueDAO{
+public class EstoqueRepositoryImpl implements EstoqueRepositoryDAO {
 	
 	@PersistenceContext
 	private EntityManager entityManager;
 	
+	@Override
 	public void incrementarEstoque(MovimentacaoEstoque movimentacaoEstoque) {
 		
 		Session session = entityManager.unwrap(Session.class);
@@ -42,6 +42,7 @@ public class EstoqueDAOImpl implements EstoqueDAO{
 		query.executeUpdate();
 	}
 	
+	@Override
 	public void decrementarEstoque(MovimentacaoEstoque movimentacaoEstoque) {
 		
 		Session session = entityManager.unwrap(Session.class);

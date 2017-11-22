@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import abobora.hackathon.gervasio.domain.MovimentacaoEstoque;
-import abobora.hackathon.gervasio.repository.EstoqueRepositorio;
+import abobora.hackathon.gervasio.repository.EstoqueRepository;
 import abobora.hackathon.gervasio.repository.MovimentacaoRepositorio;
 
 /**
@@ -18,13 +18,13 @@ import abobora.hackathon.gervasio.repository.MovimentacaoRepositorio;
 @Service
 public class MovimentacaoEntrada implements MovimentacaoEstoqueService{
 	
-	@Autowired private EstoqueRepositorio estoqueRepositorio;
+	@Autowired private EstoqueRepository estoqueRepository;
 	@Autowired private MovimentacaoRepositorio movimentacaoRepositorio;
 	
 	@Override
 	public void movimentarEstoque(MovimentacaoEstoque movimentacaoEstoque) {
 		// incrementar estoque
-		estoqueRepositorio.incrementarEstoque(movimentacaoEstoque);
+		estoqueRepository.incrementarEstoque(movimentacaoEstoque);
 		// salvar movimentacao
 		movimentacaoRepositorio.save(movimentacaoEstoque);
 	}

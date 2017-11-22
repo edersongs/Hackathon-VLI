@@ -1,5 +1,9 @@
 package abobora.hackathon.gervasio.domain;
 
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  * @author Eduardo Silva Rosa
  *		   edus.silva.rosa@gmail.com
@@ -8,37 +12,15 @@ package abobora.hackathon.gervasio.domain;
  *	       + 55 (34) 9 9179-4411	
  *
  */
+@Entity
+@Table(name = "testoque")
 public class Estoque {
 
-	private Modelo modelo;
-	private Filial filial;
-	private SubInventario subInventario;
+	@EmbeddedId
+	private EstoqueId estoqueID;
+	
 	private Long quantidade;
 	private Long quantidadeReserva;
-
-	public Modelo getModelo() {
-		return modelo;
-	}
-
-	public void setModelo(Modelo modelo) {
-		this.modelo = modelo;
-	}
-
-	public Filial getFilial() {
-		return filial;
-	}
-
-	public void setFilial(Filial filial) {
-		this.filial = filial;
-	}
-
-	public SubInventario getSubInventario() {
-		return subInventario;
-	}
-
-	public void setSubInventario(SubInventario subInventario) {
-		this.subInventario = subInventario;
-	}
 
 	public Long getQuantidade() {
 		return quantidade;
@@ -55,5 +37,37 @@ public class Estoque {
 	public void setQuantidadeReserva(Long quantidadeReserva) {
 		this.quantidadeReserva = quantidadeReserva;
 	}
+	
+	public EstoqueId getEstoqueID() {
+		return estoqueID;
+	}
 
+	public void setEstoqueID(EstoqueId estoqueID) {
+		this.estoqueID = estoqueID;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((estoqueID == null) ? 0 : estoqueID.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Estoque other = (Estoque) obj;
+		if (estoqueID == null) {
+			if (other.estoqueID != null)
+				return false;
+		} else if (!estoqueID.equals(other.estoqueID))
+			return false;
+		return true;
+	}
 }
