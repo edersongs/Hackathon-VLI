@@ -1,5 +1,9 @@
 package abobora.hackathon.gervasio.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * @author Eduardo Silva Rosa
  *		   edus.silva.rosa@gmail.com
@@ -8,12 +12,14 @@ package abobora.hackathon.gervasio.domain;
  *	       + 55 (34) 9 9179-4411	
  *
  */
-
+@Entity
+@Table
 public class Filial {
 	
 	private Long codigo;
 	private String descricao;
 
+	@Id
 	public Long getCodigo() {
 		return codigo;
 	}

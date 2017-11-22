@@ -6,6 +6,8 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -60,6 +62,8 @@ public class Ativo implements Serializable{
 		this.valor = valor;
 	}
 
+	@ManyToOne
+	@JoinColumn(name="codigo_modelo" ,referencedColumnName="codigo")
 	public Modelo getModelo() {
 		return modelo;
 	}
