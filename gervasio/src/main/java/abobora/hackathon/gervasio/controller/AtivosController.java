@@ -3,6 +3,8 @@
  */
 package abobora.hackathon.gervasio.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import abobora.hackathon.gervasio.domain.Ativo;
+import abobora.hackathon.gervasio.repository.AtivoRepositorio;
 import abobora.hackathon.gervasio.service.ImageService;
 
 /**
@@ -27,6 +31,7 @@ import abobora.hackathon.gervasio.service.ImageService;
 public class AtivosController {
 
 	@Autowired private ImageService imageSerice;
+	@Autowired private AtivoRepositorio ativoRepositorio;
 	
 	@GetMapping
 	public ModelAndView principal() {
@@ -45,6 +50,18 @@ public class AtivosController {
 		try {
 		
 			return ResponseEntity.ok().body(imageSerice.gerarQRCode(texto, tamanho, tamanho));
+		
+		} catch (Exception ex) {
+			throw new InternalError("Erro ao gerar QRCode!", ex);
+		}
+	}
+	
+	@GetMapping(path = "/todos")
+	public ResponseEntity<List<Ativo>> getTodos() {
+		
+		try {
+		
+			return ResponseEntity.ok().body(ativoRepositorio.findAll());
 		
 		} catch (Exception ex) {
 			throw new InternalError("Erro ao gerar QRCode!", ex);

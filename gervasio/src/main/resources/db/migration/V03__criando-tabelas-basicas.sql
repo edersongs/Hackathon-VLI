@@ -1,7 +1,7 @@
 CREATE TABLE tativo (
 	codigo BIGINT(20) PRIMARY KEY,
 	descricao VARCHAR(200) NOT NULL,
-	dataAquisicao date NOT NULL,
+	data_aquisicao date NOT NULL,
 	valor NUMERIC(18,4) NOT NULL,
 	codigo_modelo BIGINT(20)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
