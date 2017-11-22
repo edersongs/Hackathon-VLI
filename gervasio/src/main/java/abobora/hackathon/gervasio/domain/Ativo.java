@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -25,13 +27,23 @@ public class Ativo implements Serializable{
 
 	private static final long serialVersionUID = 7571219125790244843L;
 	
-	private Long codigo;
-	private String descricao;
-	private Date dataAquisicao;
-	private BigDecimal valor;
-	private Modelo modelo;
-
 	@Id
+	private Long codigo;
+	
+	private String descricao;
+	
+	private Date dataAquisicao;
+	
+	private BigDecimal valor;
+	
+	@ManyToOne
+	@JoinColumn(name="codigomodelo", referencedColumnName="codigo")
+	private Modelo modelo;
+	
+	@ManyToOne
+	@JoinColumn(name = "codigoFilial", referencedColumnName = "codigo")
+	private Filial filial;
+
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -63,15 +75,21 @@ public class Ativo implements Serializable{
 	public void setValor(BigDecimal valor) {
 		this.valor = valor;
 	}
-
-	@ManyToOne
-	@JoinColumn(name="codigo_modelo" ,referencedColumnName="codigo")
+	
 	public Modelo getModelo() {
 		return modelo;
 	}
 
 	public void setModelo(Modelo modelo) {
 		this.modelo = modelo;
+	}
+	
+	public Filial getFilial() {
+		return filial;
+	}
+
+	public void setFilial(Filial filial) {
+		this.filial = filial;
 	}
 
 	@Override
