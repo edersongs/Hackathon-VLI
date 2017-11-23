@@ -17,6 +17,7 @@ import abobora.hackathon.gervasio.domain.MovimentacaoEstoque;
 import abobora.hackathon.gervasio.exceptions.MovimentacaoExcpetion;
 import abobora.hackathon.gervasio.repository.MovimentacaoRepository;
 import abobora.hackathon.gervasio.service.MovimentacaoEstoqueService;
+import abobora.hackathon.gervasio.service.MovimentacaoFactory;
 
 /**
  * @author Eduardo Silva Rosa
@@ -32,7 +33,7 @@ public class MovimentacaoController {
 	
 	@Autowired MovimentacaoRepository movimentacaoRepository;
 	
-	@Autowired MovimentacaoEstoqueService movimentacaoService;
+	@Autowired MovimentacaoFactory movimentacaoFactory;
 	
 	@GetMapping
 	public ModelAndView principal() {
@@ -62,6 +63,7 @@ public class MovimentacaoController {
 	@PostMapping(path = "/novo")
 	public void novaMovimentacao(MovimentacaoEstoque movimentacaoEstoque) {
 		try {
+			MovimentacaoEstoqueService movimentacaoService = movimentacaoFactory.getInstance(movimentacaoEstoque);
 			movimentacaoService.movimentarEstoque(movimentacaoEstoque);
 		} catch (MovimentacaoExcpetion e) {
 			e.printStackTrace();
