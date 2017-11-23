@@ -14,22 +14,30 @@ import java.math.BigDecimal;
  *
  */
 
-public class TotalAtivosFilialDTO {
+public class AtivosFilialDTO {
 
 	private String filial;
-	private Integer quantidadeTotal;
+	private Long quantidadeTotal;
 	private BigDecimal valorTotal;
 	
+	public AtivosFilialDTO() {}
+	
+	public AtivosFilialDTO(String filial, Long quantidadeTotal) {
+
+		this.filial = filial;
+		this.quantidadeTotal = quantidadeTotal;
+	}
+
 	public String getFilial() {
 		return filial;
 	}
 	public void setFilial(String filial) {
 		this.filial = filial;
 	}
-	public Integer getQuantidadeTotal() {
+	public Long getQuantidadeTotal() {
 		return quantidadeTotal;
 	}
-	public void setQuantidadeTotal(Integer quantidadeTotal) {
+	public void setQuantidadeTotal(Long quantidadeTotal) {
 		this.quantidadeTotal = quantidadeTotal;
 	}
 	public BigDecimal getValorTotal() {

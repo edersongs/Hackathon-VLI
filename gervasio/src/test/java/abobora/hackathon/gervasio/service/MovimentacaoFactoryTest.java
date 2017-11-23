@@ -58,5 +58,4 @@ public class MovimentacaoFactoryTest {
 		MovimentacaoEstoqueService service = movimentacaoFactory.getInstance(movimentacaoTransferencia);
 		Assert.assertTrue(service instanceof MovimentacaoTransferencia);
 	}
-
 }
