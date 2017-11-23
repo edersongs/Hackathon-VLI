@@ -9,11 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import abobora.hackathon.gervasio.domain.MovimentacaoEstoque;
+import abobora.hackathon.gervasio.exceptions.MovimentacaoExcpetion;
 import abobora.hackathon.gervasio.repository.MovimentacaoRepository;
+import abobora.hackathon.gervasio.service.MovimentacaoEstoqueService;
 
 /**
  * @author Eduardo Silva Rosa
@@ -28,6 +31,8 @@ import abobora.hackathon.gervasio.repository.MovimentacaoRepository;
 public class MovimentacaoController {
 	
 	@Autowired MovimentacaoRepository movimentacaoRepository;
+	
+	@Autowired MovimentacaoEstoqueService movimentacaoService;
 	
 	@GetMapping
 	public ModelAndView principal() {
@@ -46,11 +51,20 @@ public class MovimentacaoController {
 	public ResponseEntity<List<MovimentacaoEstoque>> getTodos() {
 		
 		try {
-		
+
 			return ResponseEntity.ok().body(movimentacaoRepository.findAll());
 		
 		} catch (Exception ex) {
 			throw new InternalError("Erro ao gerar QRCode!", ex);
+		}
+	}
+	
+	@PostMapping(path = "/novo")
+	public void novaMovimentacao(MovimentacaoEstoque movimentacaoEstoque) {
+		try {
+			movimentacaoService.movimentarEstoque(movimentacaoEstoque);
+		} catch (MovimentacaoExcpetion e) {
+			e.printStackTrace();
 		}
 	}
 
