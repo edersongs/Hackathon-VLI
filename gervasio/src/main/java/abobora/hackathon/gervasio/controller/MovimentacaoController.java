@@ -32,7 +32,11 @@ public class MovimentacaoController {
 	@GetMapping
 	public ModelAndView principal() {
 		
+		List<MovimentacaoEstoque> movimentacaoEstoques = movimentacaoRepository.findAll();
+				
 		ModelAndView model = new ModelAndView("/page/movimentacoes/consultaMovimentacao");
+		
+		model.addObject("movs", movimentacaoEstoques);
 
 		
 		return model;

@@ -24,3 +24,6 @@ insert into testoque (codigoModelo, codigoFilial, codigoSubinventario, quantidad
 
 insert into testoque (codigoModelo, codigoFilial, codigoSubinventario, quantidade, quantidadeReserva) values (1, 2602308, 1, 110, 2);
 insert into testoque (codigoModelo, codigoFilial, codigoSubinventario, quantidade, quantidadeReserva) values (1, 4120101, 1, 558, 1);
+
+
+insert into tmovimentacaoestoque (	codigo ,codigomodelo, codigoFilialOrigem , codigoSubinventarioOrigem , codigoFilialDestino ,	codigoSubinventarioDestino , quantidade ) values (1, 1,1100015, 1, 1100023, 1,9);

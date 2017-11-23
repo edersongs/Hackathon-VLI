@@ -23,35 +23,25 @@
 	<section class="content">
 		
 			<div class="box box-default">
-				
-				<div class="box-header with-border">
-	            	<h3 class="box-title">Gerar QR Code</h3>
-          		</div>
-				
-				<div class="box-body">
-						
-					<div class="col-md-2">
-						<div class="input-group">
-							<label>Valor do QR</label>
-							<input id="valorID" type="text" class="form-control input-sm">
-						</div>
-					</div>
+			
+				<table class="table table-bordered table-hover dataTable">
+					<thead>
+						<th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Código: activate to sort column descending" aria-sort="ascending">Código</th>
+						<th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Modelo: activate to sort column descending" aria-sort="ascending">Modelo</th>
+						<th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Código: activate to sort column descending" aria-sort="ascending">Filial Origem</th>
+						<th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Código: activate to sort column descending" aria-sort="ascending">Filial Destino</th>
+					</thead>
 					
-					<div class="col-md-2">
-	                    <label>Tamanho</label> 
-						<select id="tamanhoID" onchange="onClickGerarQr()" class="form-control select2 input-sm" style="width: 100%;">
-							<option label="" value=""></option>
-							<option label="120x120" value="120x120"></option>
-							<option label="250x250" value="250x250"></option>
-							<option label="300x300" value="300x300"></option>
-						</select>
-	                </div>
-          			
-          			<div id=dvQR class="col-md-12">
-          				
-          			</div>
-          			
-				</div>
+					<tbody>
+						<tr th:each="mov : ${movs}">
+							<td th:text="${mov.codigo}">Onions</td>
+							<td th:text="${mov.modelo.descricao}">Onions</td>
+        					<td th:text="${mov.filialOrigem.descricao}">2.41</td>
+        					<td th:text="${mov.filialDestino.descricao}">yes</td>
+						</th>
+					</tbody>
+				
+				</table>
 				
 			</div>
 		
