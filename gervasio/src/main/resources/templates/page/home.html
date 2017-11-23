@@ -129,30 +129,43 @@
 	      google.charts.setOnLoadCallback(drawRegionsMap);
 	
 	      function drawRegionsMap() {
-	        var data = google.visualization.arrayToDataTable([
-	        	['State', 'Total	'],
-	            ['Araraguara', 100],
-	            ['Campinas', 300],
-	            ['Belo Horizonte', 90],
-	            ['Uberlândia', 280],
-	            ['Araguari', 80],
-	            ['Rio de Janeiro', 1000],
-	            ['Amazonas', 40],
-	            ['Salvador', 30]
-
-	        ]);
-	
-	        var options = {
-                region: 'BR',
-                displayMode: 'markers',               
-                colorAxis: {colors: ['#00853f', '#90CAF9', '#e31b23']},
-                backgroundColor: '#DDE3E7',
-                
-            };
-	
-	        var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
-	
-	        chart.draw(data, options);
+	        
+	    	  var options = {
+                  region: 'BR',
+                  displayMode: 'markers',               
+                  colorAxis: {colors: ['#00853f', '#90CAF9', '#e31b23']},
+                  backgroundColor: '#DDE3E7',
+                  
+              };
+	    	  
+	    	  $.ajax({
+		        	method: 'GET',
+				  	url: '/totalAtivosFilial',
+			      	dataType: 'json',
+			      	contentType: "application/json; charset=utf-8",
+		            success: function (data) {
+		                
+		            	var array = [];		// - Definindo array que receberá os valores do Json retornado da requisição /graficoTotalQuotaGrupo
+		                var i = 0;			// - Variável para incremento
+		            	
+		                // - Percorrendo Json e armazenando valores ao array
+		                $.each(data, function () {
+		                    array.push([data[i].filial, data[i].quantidadeTotal]);
+		                    i += 1;
+		                });
+		                
+		                var lista = google.visualization.arrayToDataTable(array, true)	// - Fazendo o bind do array para o tipo ArrayDataTable do gráfico
+		             	// - Definindo o tipo de gráfico e buscando o id da div que está na tela onde o gráfico será apresentado
+		                var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+		                
+		                var formatter = new google.visualization.NumberFormat({negativeColor: 'red', negativeParens: true, pattern: '#.###'});
+		                formatter.format(lista, 1);
+		                chart.draw(lista, options);   // - Adiciona ao objeto de gráfico os dados e opções de apresentação.
+		            },
+		            error: function (XMLHttpRequest, textStatus, errorThrown) {
+		                alert('Erro ao Renderizar Gráfico ' + XMLHttpRequest + ' ' + textStatus + ' ' + errorThrown);
+		            }
+		        });
 	      }
 	    </script>
 		
