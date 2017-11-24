@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import abobora.hackathon.gervasio.domain.Estoque;
@@ -28,8 +29,8 @@ public interface EstoqueRepository extends JpaRepository<Estoque, EstoqueId>, Es
 	Collection<AtivosFilialDTO> findTotalAtivosFilial();
 	
 	@Query(	"FROM Estoque e "
-			+ "WHERE e.estoqueID.filial.codigo = ?1 "
-			+ "And e.estoqueID.subInventario.codigo = ?2 "
-			+ "And e.estoqueID.modelo.codigo = ?3 ")
-	Estoque buscarPeloId(Long codigoModelo,Long codigoFilial,Long codigoSubInv);
+			+ "WHERE e.estoqueID.filial.codigo = :codigoFilial "
+			+ "And e.estoqueID.subInventario.codigo = :codigoSubInv "
+			+ "And e.estoqueID.modelo.codigo = :codigoModelo ")
+	Estoque buscarPeloId(@Param("codigoModelo") Long codigoModelo,@Param("codigoFilial")Long codigoFilial,@Param("codigoSubInv")Long codigoSubInv);
 }

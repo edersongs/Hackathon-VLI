@@ -1,7 +1,6 @@
 package abobora.hackathon.gervasio.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import abobora.hackathon.gervasio.domain.Estoque;
@@ -29,16 +28,11 @@ public class MovimentacaoSaida implements MovimentacaoEstoqueService {
 	@Override
 	public void movimentarEstoque(MovimentacaoEstoque movimentacaoEstoque) throws MovimentacaoExcpetion {
 
-		Estoque estoqueConsulta = new Estoque();
-		estoqueConsulta.getEstoqueID().setFilial(movimentacaoEstoque.getFilialOrigem());
-		estoqueConsulta.getEstoqueID().setSubInventario(movimentacaoEstoque.getSubInventarioDestino());
-		estoqueConsulta.getEstoqueID().setModelo(movimentacaoEstoque.getModelo());
 
-		Example<Estoque> example = Example.of(estoqueConsulta);
+		Estoque estoque = estoqueRepository.buscarPeloId(movimentacaoEstoque.getModelo().getCodigo(), movimentacaoEstoque.getFilialOrigem().getCodigo()
+				, movimentacaoEstoque.getSubInventarioOrigem().getCodigo());
 
-		Estoque estoque = estoqueRepository.findOne(example);
-
-		if (estoque.getQuantidade() - estoque.getQuantidadeReserva() > movimentacaoEstoque.getQuantidade()) {
+		if (estoque != null && estoque.getQuantidade() - estoque.getQuantidadeReserva() > movimentacaoEstoque.getQuantidade()) {
 			// incrementar estoque
 			estoqueRepository.decrementarEstoque(movimentacaoEstoque);
 			// salvar movimentacao

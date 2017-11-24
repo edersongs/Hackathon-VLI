@@ -50,9 +50,10 @@ public class EstoqueRepositoryImpl implements EstoqueRepositoryDAO {
 		
 		Session session = entityManager.unwrap(Session.class);
 		
-		String sql = "update Estoque set quantidade = quantidade - :quantidade "
-				+ "where modelo.codigo = :codigoModelo and filial.codigo = :codigoFilial "
-				+ "and subInventario.codigo = :codigoSubIventario"  ;
+		String sql = "update Estoque etq set quantidade = quantidade - :quantidade "
+				+ "where exists (select 1 from Modelo mod where etq.estoqueID.modelo.codigo = mod.codigo and mod.codigo = :codigoModelo ) "
+				+ "and exists (Select 1 from Filial fil where etq.estoqueID.filial.codigo = fil.codigo and fil.codigo = :codigoFilial) "
+				+ "and exists (Select 1 from SubInventario sub where etq.estoqueID.subInventario = sub.codigo and sub.codigo = :codigoSubIventario)"  ;
 		
 		Query query = session.createQuery(sql);
 		
