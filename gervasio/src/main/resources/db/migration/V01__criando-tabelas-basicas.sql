@@ -4,10 +4,16 @@ CREATE TABLE tativo (
 	dataAquisicao date NOT NULL,
 	valor NUMERIC(18,4) NOT NULL,
 	codigoFilial BIGINT(20) NOT NULL,
-	codigoModelo BIGINT(20)
+	codigoModelo BIGINT(20),
+	codigoStatus BIGINT(20),
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE tmodelo (
+	codigo BIGINT(20) PRIMARY KEY,
+	descricao VARCHAR(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE tstatusAtivo (
 	codigo BIGINT(20) PRIMARY KEY,
 	descricao VARCHAR(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -46,4 +52,17 @@ CREATE TABLE tmovimentacaoestoque (
 	
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE ttransferencia (
+	codigo BIGINT(20) not null,
+	codigoFilialOrigem BIGINT(20) not null,
+	codigoFilialDestino BIGINT(20) not null,
+	PRIMARY KEY (codigo)
+	
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE ttransferenciaItem (
+	codigoTransferencia BIGINT(20) not null,
+	codigoAtivo BIGINT(20) not null,
+	PRIMARY KEY (codigoTransferencia,codigoAtivo)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

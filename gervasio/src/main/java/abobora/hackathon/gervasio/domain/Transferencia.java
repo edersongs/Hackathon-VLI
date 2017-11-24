@@ -9,6 +9,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -28,7 +29,11 @@ public class Transferencia implements Serializable{
 	
 	@Id
 	private Long codigo;
+	@ManyToOne
+	@JoinColumn(name="codigoFilialOrigem",referencedColumnName="codigo")
 	private Filial filialOrigem;
+	@ManyToOne
+	@JoinColumn(name="codigoFilialDestino",referencedColumnName="codigo")
 	private Filial filialDestino;
 	@OneToMany(mappedBy="transferencia")
 	private List<ItemTransferencia> itens;
@@ -37,18 +42,22 @@ public class Transferencia implements Serializable{
 	public Long getCodigo() {
 		return codigo;
 	}
+	
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
+	
 	public Filial getFilialOrigem() {
 		return filialOrigem;
 	}
 	public void setFilialOrigem(Filial filialOrigem) {
 		this.filialOrigem = filialOrigem;
 	}
+	
 	public Filial getFilialDestino() {
 		return filialDestino;
 	}
+	
 	public void setFilialDestino(Filial filialDestino) {
 		this.filialDestino = filialDestino;
 	}
