@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import abobora.hackathon.gervasio.domain.MovimentacaoEstoque;
-import abobora.hackathon.gervasio.domain.TipoMovimentacao;
+import abobora.hackathon.gervasio.domain.enums.TipoMovimentacao;
 
 /**
  * @author Eduardo Silva Rosa

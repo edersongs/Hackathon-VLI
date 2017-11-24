@@ -1,4 +1,4 @@
-package abobora.hackathon.gervasio.domain;
+package abobora.hackathon.gervasio.domain.enums;
 
 /**
  * @author Eduardo Silva Rosa

@@ -7,6 +7,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import abobora.hackathon.gervasio.domain.enums.TipoMovimentacao;
+
 /**
  * @author Eduardo Silva Rosa edus.silva.rosa@gmail.com
  *         linkedin.com/in/eduardo-rosa https://github.com/edusr + 55 (34) 9

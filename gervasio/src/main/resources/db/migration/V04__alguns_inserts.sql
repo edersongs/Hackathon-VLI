@@ -1,9 +1,3 @@
-insert into tativo (codigo,descricao,dataAquisicao,valor,codigomodelo, codigofilial) values (1,'mesa','2016-03-05',300.00,1, 3170206);
-insert into tativo (codigo,descricao,dataAquisicao,valor,codigomodelo, codigofilial) values (2,'cadeira','2017-03-05',200.00,2, 3170107);
-
-insert into tmodelo (codigo,descricao) values (1,'modelo de mesa');
-insert into tmodelo (codigo,descricao) values (2,'modelo de cadeira');
-
 insert into tsubinventario (codigo,descricao) values (1,'RECEBIMENTO');
 
 
