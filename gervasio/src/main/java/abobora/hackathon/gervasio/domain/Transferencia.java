@@ -38,6 +38,7 @@ public class Transferencia implements Serializable{
 	private Filial filialDestino;
 	@OneToMany(mappedBy="transferencia")
 	private List<ItemTransferencia> itens;
+	@Transient
 	private Boolean selecionado;
 	
 	public Long getCodigo() {
@@ -81,7 +82,7 @@ public class Transferencia implements Serializable{
 		this.itens = itens;
 	}
 	
-	@Transient
+	
 	public Boolean getSelecionado() {
 		if (selecionado == null) {
 			selecionado = Boolean.FALSE;
