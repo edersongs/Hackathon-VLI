@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  * @author Eduardo Silva Rosa
@@ -37,7 +38,7 @@ public class Transferencia implements Serializable{
 	private Filial filialDestino;
 	@OneToMany(mappedBy="transferencia")
 	private List<ItemTransferencia> itens;
-	
+	private Boolean selecionado;
 	
 	public Long getCodigo() {
 		return codigo;
@@ -48,6 +49,10 @@ public class Transferencia implements Serializable{
 	}
 	
 	public Filial getFilialOrigem() {
+		if (filialOrigem == null) {
+			filialOrigem = new Filial();
+		}
+		
 		return filialOrigem;
 	}
 	public void setFilialOrigem(Filial filialOrigem) {
@@ -76,4 +81,15 @@ public class Transferencia implements Serializable{
 		this.itens = itens;
 	}
 	
+	@Transient
+	public Boolean getSelecionado() {
+		if (selecionado == null) {
+			selecionado = Boolean.FALSE;
+		}
+		return selecionado;
+	}
+
+	public void setSelecionado(Boolean selecionado) {
+		this.selecionado = selecionado;
+	}
 }

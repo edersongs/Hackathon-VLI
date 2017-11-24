@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt" 
+	  xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="'layout/default'">
+	
+<head>
+</head>
+<body>
+
+<section layout:fragment="conteudo">
+	
+	<section class="content-header">
+		<h1>
+			Transferência <small>Trasnferência de ativos</small>
+		</h1>
+		<ol class="breadcrumb">
+			<li><a href="#"><i class="fa fa-dashboard"></i></a></li>
+		</ol>
+	</section>
+
+	<section class="content">
+		
+			<div class="box box-default">
+			
+				<div class="box-header with-border">
+					<h3 class="box-title">Informe os dados</h3>
+				</div>
+				
+				<form th:object="${transferencia}" method="POST" th:action="@{save}">
+					<input type="hidden" th:field="*{codigo}"/>
+					
+					<div class="box-body">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									
+									<label>Filial Origem</label> 
+									
+									<select id="filOriID" th:field="*{filialOrigem}" class="form-control select2 input-sm"  style="width: 100%;">
+										<option label="" value=""></option>
+										<option th:each="fil : ${filiais}" th:value="${fil.codigo}" th:text="${fil.nome}"></option>
+									</select>
+								</div>
+							</div>
+							
+							<div class="col-md-6">
+								<div class="form-group">
+									
+									<label>Filial Destino</label> 
+									
+									<select id="filDstID" th:field="*{filialDestino}" class="form-control select2 input-sm"  style="width: 100%;">
+										<option label="" value=""></option>
+										<option th:each="fil : ${filiais}" th:value="${fil.codigo}" th:text="${fil.nome}"></option>
+									</select>
+								</div>
+							</div>
+						
+						</div>
+					
+					
+						<div class="box-body table-responsive no-padding">
+							<table id="tableCheckID" class="table table-hover ">
+		                    	<thead>
+			                    	<tr>
+			                    		<th><input name="select_all" value="1" id="example-select-all" type="checkbox"/></th>
+				                        <th>Código</th>
+				                        <th>Descrição</th>
+				                        <th>Data Aquisição</th>
+				                        <th>Valor</th>
+			                      	</tr>
+		                      	</thead>
+		
+		                      	<tbody>
+			                      <tr th:each="obj : ${ativos}">
+								    <td><input type="checkbox" th:field="*{selecionado}"/></td>
+			                        <td th:text="${obj.codigo}"></td>
+			                        <td th:text="${obj.descricao}"></td>
+			                        <td th:text="${#dates.format(obj.dataAquisicao, 'dd/MM/yyyy')}"></td>
+			                        <td th:text="${#numbers.formatCurrency(obj.valor)}"></td>
+			                      </tr>
+			                    </tbody>
+			                    
+			                    <tfoot>
+						            <tr>
+						                <th></th>
+						                <th></th>
+						                <th></th>
+						                <th></th>
+						            </tr>
+						        </tfoot>
+			                </table>
+						</div>
+					
+					</div>
+				</form>
+			</div>
+		
+	</section>
+</section>
+	
+	<th:block layout:fragment="javascript-extra">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+		<script th:src="@{/helper/js/js-apresentar-QRCode.js}"></script>
+		<script th:src="@{/helper/js/config/data-table-configuration-checkbox.js}"></script>
+	</th:block>
+	
+</body>
+</html>

@@ -15,6 +15,7 @@
 		              <i class="fa fa-angle-left pull-right"></i>
 		            </span>
 		        </a>
+		        
 			 </li>
 			 
 			 <li>
@@ -26,13 +27,19 @@
 		        </a>
 			 </li>
 			 
-			 <li>
-				<a th:href="@{/transferencias}">
+			 <li class="treeview">
+				<a href="#">
 		            <i class="fa fa-history"></i> <span>Transferencia</span>
 		            <span class="pull-right-container">
 		              <i class="fa fa-angle-left pull-right"></i>
 		            </span>
 		        </a>
+		        
+		        <ul class="treeview-menu">
+		            <li><a th:href="@{/transferencias/nova}"><i class="fa fa-circle-o"></i> <span>Nova</span></a></li>
+		            
+		            <li><a th:href="@{/transferencias/}"><i class="fa fa-circle-o"></i>Consulta</a></li>
+		        </ul>
 			 </li>
 			 
 			 <li>
