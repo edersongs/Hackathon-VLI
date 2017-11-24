@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import abobora.hackathon.gervasio.domain.Estoque;
+import abobora.hackathon.gervasio.domain.EstoqueId;
 import abobora.hackathon.gervasio.domain.dto.AtivosFilialDTO;
 
 /**
@@ -18,11 +19,17 @@ import abobora.hackathon.gervasio.domain.dto.AtivosFilialDTO;
  *
  */
 @Repository
-public interface EstoqueRepository extends JpaRepository<Estoque, Long>, EstoqueRepositoryDAO {
+public interface EstoqueRepository extends JpaRepository<Estoque, EstoqueId>, EstoqueRepositoryDAO {
 
 	@Query("SELECT new abobora.hackathon.gervasio.domain.dto.AtivosFilialDTO(e.estoqueID.filial.descricao, sum(e.quantidade)) "
 			+ "FROM Estoque e, Filial f "
 			+ "WHERE e.estoqueID.filial.codigo = f.codigo "
 			+ "GROUP BY f.codigo")
 	Collection<AtivosFilialDTO> findTotalAtivosFilial();
+	
+	@Query(	"FROM Estoque e "
+			+ "WHERE e.estoqueID.filial.codigo = ?1 "
+			+ "And e.estoqueID.subInventario.codigo = ?2 "
+			+ "And e.estoqueID.modelo.codigo = ?3 ")
+	Estoque buscarPeloId(Long codigoModelo,Long codigoFilial,Long codigoSubInv);
 }
