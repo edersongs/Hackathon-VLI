@@ -20,7 +20,8 @@ CREATE TABLE tstatusAtivo (
 
 CREATE TABLE tfilial (
 	codigo BIGINT(20) auto_increment PRIMARY KEY,
-	descricao VARCHAR(200) NOT NULL,
+	nome VARCHAR(200) NOT NULL,
+	sigla VARCHAR(200) NOT NULL,
 	longitude VARCHAR(200) NOT NULL,
 	latitude VARCHAR(200) NULL NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

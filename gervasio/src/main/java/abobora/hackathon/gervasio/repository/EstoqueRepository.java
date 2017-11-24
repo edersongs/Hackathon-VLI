@@ -22,7 +22,7 @@ import abobora.hackathon.gervasio.domain.dto.AtivosFilialDTO;
 @Repository
 public interface EstoqueRepository extends JpaRepository<Estoque, EstoqueId>, EstoqueRepositoryDAO {
 
-	@Query("SELECT new abobora.hackathon.gervasio.domain.dto.AtivosFilialDTO(e.estoqueID.filial.descricao, sum(e.quantidade)) "
+	@Query("SELECT new abobora.hackathon.gervasio.domain.dto.AtivosFilialDTO(e.estoqueID.filial.nome, sum(e.quantidade)) "
 			+ "FROM Estoque e, Filial f "
 			+ "WHERE e.estoqueID.filial.codigo = f.codigo "
 			+ "GROUP BY f.codigo")

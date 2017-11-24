@@ -44,7 +44,7 @@ public class MovimentacaoEntradaTest {
 		subInventarioDestino.setCodigo(1L);
 		
 		Filial filialDestino = new Filial();
-		filialDestino.setCodigo(1100015L);
+		filialDestino.setCodigo(1L);
 		
 		
 		movimentacaoEstoque.setModelo(modelo);

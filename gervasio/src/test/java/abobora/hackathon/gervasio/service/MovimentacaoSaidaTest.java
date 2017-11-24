@@ -50,7 +50,7 @@ public class MovimentacaoSaidaTest {
 		subInventarioDestino.setCodigo(1L);
 		
 		Filial filialDestino = new Filial();
-		filialDestino.setCodigo(1100015L);
+		filialDestino.setCodigo(1L);
 		
 		Estoque estoque = new Estoque();
 		EstoqueId estoqueId = new EstoqueId();
@@ -87,7 +87,7 @@ public class MovimentacaoSaidaTest {
 		subInventarioDestino.setCodigo(1L);
 		
 		Filial filialDestino = new Filial();
-		filialDestino.setCodigo(1100015L);
+		filialDestino.setCodigo(2L);
 		
 		Estoque estoque = new Estoque();
 		EstoqueId estoqueId = new EstoqueId();

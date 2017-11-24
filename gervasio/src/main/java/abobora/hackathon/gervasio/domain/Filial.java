@@ -22,7 +22,8 @@ public class Filial implements Serializable {
 	
 	@Id
 	private Long codigo;
-	private String descricao;
+	private String nome;
+	private String sigla;
 
 	public Long getCodigo() {
 		return codigo;
@@ -32,12 +33,20 @@ public class Filial implements Serializable {
 		this.codigo = codigo;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	
+	public String getSigla() {
+		return sigla;
+	}
+
+	public void setSigla(String sigla) {
+		this.sigla = sigla;
 	}
 
 	@Override
