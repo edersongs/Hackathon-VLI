@@ -9,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import abobora.hackathon.gervasio.domain.MovimentacaoEstoque;
-import abobora.hackathon.gervasio.domain.TipoMovimentacao;
+import abobora.hackathon.gervasio.domain.enums.TipoMovimentacao;
 
 /**
  * @author Eduardo Silva Rosa
