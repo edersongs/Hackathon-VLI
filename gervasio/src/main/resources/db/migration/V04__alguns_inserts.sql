@@ -1,17 +1,3 @@
-<<<<<<< HEAD:gervasio/src/main/resources/db/migration/V03__alguns_inserts.sql
-insert into tativo (codigo,descricao,dataAquisicao,valor,codigomodelo, codigofilial,codigoStatus) values (1,'mesa','2016-03-05',300.00,1, 3170206,1);
-insert into tativo (codigo,descricao,dataAquisicao,valor,codigomodelo, codigofilial,codigoStatus) values (2,'Locomotiva','2017-03-09',200.00,2, 3170107,2);
-insert into tativo (codigo,descricao,dataAquisicao,valor,codigomodelo, codigofilial,codigoStatus) values (3,'computador','2017-02-25',200.00,2, 3170107,3);
-insert into tativo (codigo,descricao,dataAquisicao,valor,codigomodelo, codigofilial,codigoStatus) values (4,'impressora','2014-08-05',200.00,2, 3170107,4);
-insert into tativo (codigo,descricao,dataAquisicao,valor,codigomodelo, codigofilial,codigoStatus) values (5,'monitor','2013-09-15',200.00,2, 3170107,5);
-insert into tativo (codigo,descricao,dataAquisicao,valor,codigomodelo, codigofilial,codigoStatus) values (6,'vagao','2010-07-08',200.00,2, 3170107,6);
-
-
-
-
-insert into tmodelo (codigo,descricao) values (1,'modelo de mesa');
-insert into tmodelo (codigo,descricao) values (2,'modelo de cadeira');
-
 insert into tstatusAtivo (codigo,descricao) values (1,'Ativo');
 insert into tstatusAtivo (codigo,descricao) values (2,'Danificado');
 insert into tstatusAtivo (codigo,descricao) values (3,'Manutenção');
@@ -20,8 +6,7 @@ insert into tstatusAtivo (codigo,descricao) values (5,'Recebido');
 insert into tstatusAtivo (codigo,descricao) values (6,'Baixado');
 
 
-=======
->>>>>>> 172062180d5cecf680165551fb7de3b45cb9f4a6:gervasio/src/main/resources/db/migration/V04__alguns_inserts.sql
+
 insert into tsubinventario (codigo,descricao) values (1,'RECEBIMENTO');
 
 
