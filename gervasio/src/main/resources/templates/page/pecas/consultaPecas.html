@@ -24,24 +24,57 @@
 		
 			<div class="box box-default">
 			
-				<table class="table table-bordered table-hover dataTable">
-					<thead>
-						<th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Código: activate to sort column descending" aria-sort="ascending">Código</th>
-						<th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Modelo: activate to sort column descending" aria-sort="ascending">Descricao</th>
-						<th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Código: activate to sort column descending" aria-sort="ascending">Tipo</th>
-						<th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Código: activate to sort column descending" aria-sort="ascending">Status</th>
-					</thead>
+				<div class="box-body">
 					
-					<tbody>
-						<tr th:each="peca : ${pecas}">
-							<td th:text="${peca.codigo}">Onions</td>
-							<td th:text="${peca.descricao}">Onions</td>
-        					<td th:text="${peca.tipoPeca.descricao}">2.41</td>
-        					<td th:text="${peca.statusPeca}">yes</td>
-						</th>
-					</tbody>
-				
-				</table>
+					<div class="col-md-8">
+						
+						<div class="table-responsive no-padding">
+						
+							<table id="tableCheckID" class="table table-hover ">
+		                    	<thead>
+			                    	<tr>
+				                        <th>Descrição</th>
+				                        <th>Tipo Peça</th>
+				                        <th>Status</th>
+			                      	</tr>
+		                      	</thead>
+		
+		                      	<tbody>
+			                      <tr th:each="obj : ${pecas}">
+									<td th:text="${obj.descricao}"></td>
+		        					<td th:text="${obj.tipoPeca.descricao}"></td>
+		        					<td>
+										<span th:if="${obj.statusPeca.name() == 'ATIVO'}" class="label label-success" th:text="${obj.statusPeca}"></span>
+										<span th:if="${obj.statusPeca.name() == 'MANUTENCAO'}" class="label label-warning" th:text="${obj.statusPeca}"></span>
+										<span th:if="${obj.statusPeca.name() == 'DANIFICADO'}" class="label label-danger" th:text="${obj.statusPeca}"></span>
+			                        </td>
+			                        <td>
+										<button id="btnGerarQRID" th:onclick="'javascript:onClickGerarQr(\'' + ${obj.codigo} +'\');'" type="submit" class="btn btn-sm btn-primary">Gerar QR</button>
+			                        </td>
+								  </tr>
+			                    </tbody>
+			                    
+			                    <tfoot>
+						            <tr>
+						                <th></th>
+						                <th></th>
+						                <th></th>
+						            </tr>
+						        </tfoot>
+			                </table>
+						</div>
+					
+					</div>
+					
+					<div class="col-md-4">
+					
+						<div id=dvQR class="col-md-12">
+							
+          				</div>
+					
+					</div>
+					
+				</div>
 				
 			</div>
 		
@@ -50,7 +83,7 @@
 	
 	<th:block layout:fragment="javascript-extra">
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
-		<script th:src="@{/helper/js/js-apresentar-QRCode.js}"></script>
+		<script th:src="@{/helper/js/js-apresentar-QRCode-pecas.js}"></script>
 	</th:block>
 	
 </body>

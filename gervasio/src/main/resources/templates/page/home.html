@@ -25,7 +25,7 @@
 		<div class="row">
 		
 			<div class="col-lg-6 col-xs-6">
-	          <div class="small-box bg-red">
+	          <div class="small-box bg-light-blue">
 	            <div class="inner">
 	              <h4>Total Peças nos Armazéns</h4>
 	
@@ -53,7 +53,7 @@
 	        </div> -->
 
 	        <div class="col-lg-6 col-xs-6">
-	          <div class="small-box bg-green">
+	          <div class="small-box bg-blue">
 	            <div class="inner">
 	              <h4>Total Peças nos Terminais</h4>
 	
@@ -101,11 +101,11 @@
 				<div class="box box-default">
 					
 					<div class="box-header with-border">
-		            	<h3 class="box-title">Não sei ainda o que informar</h3>		            
+		            	<h3 class="box-title">Probabilidade de Falha nos Terminais</h3>		            
 	              	</div>
 	              	
 					<div class="box-body">
-	          		   <div id="map_div" style="height: 300px;"></div>
+	          		   <div id="donutchart" style="height: 300px;"></div>
 					</div>
 					
 				</div>
@@ -286,6 +286,28 @@
         chart.draw(data, options);
       }
     </script>
+	    
+	    <script type="text/javascript">
+	      google.charts.load("current", {packages:["corechart"]});
+	      google.charts.setOnLoadCallback(drawChart);
+	      function drawChart() {
+	        var data = google.visualization.arrayToDataTable([
+	          ['Terminal', 'Probabilidade Falha'],
+	          ['Araguari',     50],
+	          ['Uberaba',      39],
+	          ['Pirapora',  20],
+	          ['Guará', 59]
+	        ]);
+	
+	        var options = {
+	          //title: 'My Daily Activities',
+	          pieHole: 0.4,
+	        };
+	
+	        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+	        chart.draw(data, options);
+	      }
+	    </script>
   	 
 	</th:block>
 	

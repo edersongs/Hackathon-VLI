@@ -13,12 +13,9 @@ package abobora.hackathon.gervasio.domain;
  */
 
 public enum StatusPeca {
-	
 
 	ATIVO,
 	MANUTENCAO,
 	DANIFICADO;
-	
-	
 
 }
