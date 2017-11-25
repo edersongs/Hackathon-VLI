@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt" 
+	  xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="'layout/default'">
+	
+<head>
+</head>
+<body>
+
+<section layout:fragment="conteudo">
+	
+	<section class="content-header">
+		<h1>
+			Histórico <small>Histórico equipamentos reparavéis</small>
+		</h1>
+		<ol class="breadcrumb">
+			<li><a href="#"><i class="fa fa-dashboard"></i></a></li>
+		</ol>
+	</section>
+	
+	<section class="content">
+		
+		<div class="row">
+	        <div class="col-md-12">
+	          
+	          <ul class="timeline">
+	            
+	            <li class="time-label">
+	                  <span class="bg-red">
+	                    10 Ago.2017
+	                  </span>
+	            </li>
+	            
+	            <li>
+	              <i class="fa fa-envelope bg-blue"></i>
+	
+	              <div class="timeline-item">
+	                <span class="time"><i class="fa fa-clock-o"></i> 09:05</span>
+	
+	                <h3 class="timeline-header"><a href="#">Motor - Terminal Uberaba</a> solicitação de reparo</h3>
+	
+	                <div class="timeline-body">
+	                  Peça danificada durante operação 
+	                </div>
+	                <!-- <div class="timeline-footer">
+	                  <a class="btn btn-primary btn-xs">Read more</a>
+	                  <a class="btn btn-danger btn-xs">Delete</a>
+	                </div> -->
+	              </div>
+	            </li>
+	            
+	            <li>
+	              <i class="fa fa-user bg-aqua"></i>
+	
+	              <div class="timeline-item">
+	                <span class="time"><i class="fa fa-clock-o"></i> 5 mins depois</span>
+	
+	                <h3 class="timeline-header no-border"><a href="#">Solicitação Recebida</a> Peça encaminhada para reparo</h3>
+	              </div>
+	            </li>
+	            
+	            <li>
+	              <i class="fa fa-comments bg-yellow"></i>
+	
+	              <div class="timeline-item">
+	                <span class="time"><i class="fa fa-clock-o"></i> 27 mins depois</span>
+	
+	                <h3 class="timeline-header"><a href="#">Solicitação em reparo</a></h3>
+	
+	                <div class="timeline-body">
+	                  Peça em reparo, tempo estimado 3hs...
+	                </div>
+	                <!-- <div class="timeline-footer">
+	                  <a class="btn btn-warning btn-flat btn-xs">View comment</a>
+	                </div> -->
+	              </div>
+	            </li>
+	            
+	            <li class="time-label">
+	                  <span class="bg-green">
+	                    10 Ago. 2017
+	                  </span>
+	            </li>
+	            
+	            <li>
+	              <i class="fa fa-camera bg-purple"></i>
+	
+	              <div class="timeline-item">
+	                <span class="time"><i class="fa fa-clock-o"></i> 4 hs depois</span>
+	
+	                <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
+					
+					 <div class="timeline-body">
+	                  Concluído 
+	                </div>
+	                
+	              </div>
+	            </li>
+	            
+	          </ul>
+	        </div>
+      </div>	
+		
+	</section>
+		
+</section>
+	
+	<th:block layout:fragment="javascript-extra">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+		<script type="text/javascript">
+		  google.charts.load("current", {packages:["timeline"]});
+		  google.charts.setOnLoadCallback(drawChart);
+		  function drawChart() {
+		    var container = document.getElementById('historicoID');
+		    var chart = new google.visualization.Timeline(container);
+		    var dataTable = new google.visualization.DataTable();
+		
+		    dataTable.addColumn({ type: 'string', id: 'Role' });
+		    dataTable.addColumn({ type: 'string', id: 'Name' });
+		    dataTable.addColumn({ type: 'date', id: 'Start' });
+		    dataTable.addColumn({ type: 'date', id: 'End' });
+		    dataTable.addRows([
+		      [ 'Peça', 'Motor', new Date(2017, 1, 10), new Date(2017, 1, 15) ],
+		      [ 'Peça', 'Redutor', new Date(2017, 2, 15), new Date(2017, 3, 30) ],
+		      [ 'Peça', 'Acoplamento', new Date(2017, 7, 21), new Date(2017, 10, 30) ]]);
+		
+		    var options = {
+		      timeline: { groupByRowLabel: false }
+		    };
+		
+		    chart.draw(dataTable, options);
+		  }
+		</script>
+	</th:block>
+	
+</body>
+</html>
