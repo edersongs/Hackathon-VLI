@@ -11,6 +11,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
+import hackaton.abobora.jerimum.domain.Peca;
+
 public class MainActivity extends Activity {
 
     private Button btnAtivar;
@@ -18,15 +22,33 @@ public class MainActivity extends Activity {
     private Button btnDanificado;
     private Button btnReadQr;
     static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
-    private TextView formatTxt, contentTxt;
+    private TextView txvDescricaoPeca, txvCodigoPeca,txvTipoPeca,txvStatusPeca;
+    private TextView txvLbDescricaoPeca, txvLbCodigoPeca,txvLbTipoPeca,txvLbStatusPeca;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        formatTxt = (TextView)findViewById(R.id.scan_format);
-        contentTxt = (TextView)findViewById(R.id.scan_content);
+        txvDescricaoPeca = (TextView)findViewById(R.id.tx_descricao_peca);
+        txvCodigoPeca = (TextView)findViewById(R.id.tx_codigo_peca);
+        txvTipoPeca = (TextView)findViewById(R.id.tx_tipo_peca);
+        txvStatusPeca = (TextView)findViewById(R.id.tx_status_peca);
+
+        txvLbDescricaoPeca = (TextView)findViewById(R.id.tx_lb_descricao_peca);
+        txvLbCodigoPeca = (TextView)findViewById(R.id.tx_lb_codigo_peca);
+        txvLbTipoPeca = (TextView)findViewById(R.id.tx_lb_tipo_peca);
+        txvLbStatusPeca = (TextView)findViewById(R.id.tx_lb_status_peca);
+
+        txvDescricaoPeca.setVisibility(View.GONE);
+                txvCodigoPeca.setVisibility(View.GONE);
+        txvTipoPeca.setVisibility(View.GONE);
+                txvStatusPeca.setVisibility(View.GONE);
+
+        txvLbDescricaoPeca.setVisibility(View.GONE);
+        txvLbCodigoPeca.setVisibility(View.GONE);
+        txvLbTipoPeca.setVisibility(View.GONE);
+        txvLbStatusPeca.setVisibility(View.GONE);
 
         btnReadQr = (Button) findViewById(R.id.btn_qr_code);
 
@@ -111,8 +133,22 @@ public class MainActivity extends Activity {
                 //get the extras that are returned from the intent
                 String contents = intent.getStringExtra("SCAN_RESULT");
                 String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
-                formatTxt.setText("FORMAT: " + format);
-                contentTxt.setText("CONTENT: " + contents);
+                Gson gson = new Gson();
+                Peca peca = gson.fromJson(contents,Peca.class);
+                txvDescricaoPeca.setText(peca.getDescricao());
+                txvCodigoPeca.setText(peca.getCodigo().toString());
+                txvTipoPeca.setText(peca.getTipoPeca().getDescricao());
+                txvStatusPeca.setText(peca.getStatusPeca().name());
+                txvDescricaoPeca.setVisibility(View.VISIBLE);
+                txvCodigoPeca.setVisibility(View.VISIBLE);
+                txvTipoPeca.setVisibility(View.VISIBLE);
+                txvStatusPeca.setVisibility(View.VISIBLE);
+
+
+                txvLbDescricaoPeca.setVisibility(View.VISIBLE);
+                txvLbTipoPeca.setVisibility(View.VISIBLE);
+                txvLbCodigoPeca.setVisibility(View.VISIBLE);
+                txvLbStatusPeca.setVisibility(View.VISIBLE);
 //                Toast toast = Toast.makeText(this, "Leitura:" + contents + " Formato:" + format, Toast.LENGTH_LONG);
                 btnDanificado.setVisibility(View.VISIBLE);
                 btnAtivar.setVisibility(View.VISIBLE);
