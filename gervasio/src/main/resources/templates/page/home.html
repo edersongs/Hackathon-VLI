@@ -24,12 +24,12 @@
 		
 		<div class="row">
 		
-			<div class="col-lg-3 col-xs-6">
+			<div class="col-lg-6 col-xs-6">
 	          <div class="small-box bg-red">
 	            <div class="inner">
-	              <h2></h2>
+	              <h4>Total Peças nos Armazéns</h4>
 	
-	              <p>Valor 1</p>
+	             <h2>1.980</h2>
 	            </div>
 	            <!-- <div class="icon">
 	              <i class="fa fa-calculator"></i>
@@ -38,26 +38,26 @@
 	          </div>
 	        </div>
 		        
-	        <div class="col-lg-3 col-xs-6">
+	        <!-- <div class="col-lg-3 col-xs-6">
 	          <div class="small-box bg-yellow">
 	            <div class="inner">
-	              <h2></h2>
+	              <h2>Total Peças nos Armazéns</h2>
 	
-	              <p>Valor 2</p>
+	              <p>1.980</p>
 	            </div>
-	            <!-- <div class="icon">
+	            <div class="icon">
 	              <i class="fa fa-plus"></i>
-	            </div> -->
+	            </div>
 	            <a href="#" class="small-box-footer">Mais Informações <i class="fa fa-arrow-circle-right"></i></a>
 	          </div>
-	        </div>
+	        </div> -->
 
-	        <div class="col-lg-3 col-xs-6">
+	        <div class="col-lg-6 col-xs-6">
 	          <div class="small-box bg-green">
 	            <div class="inner">
-	              <h2></h2>
+	              <h4>Total Peças nos Terminais</h4>
 	
-	              <p>Valor 3</p>
+	              <h2>990</h2>
 	            </div>
 	            <!-- <div class="icon">
 	              <i class="fa fa-usd"></i>
@@ -66,26 +66,26 @@
 	          </div>
 	        </div>
 
-	        <div class="col-lg-3 col-xs-6">
+	        <!-- <div class="col-lg-3 col-xs-6">
 	          <div class="small-box bg-aqua">
 	            <div class="inner">
 	              <h2></h2>
 	
 	              <p>Valor 4</p>
 	            </div>
-	            <!-- <div class="icon">
+	            <div class="icon">
 	              <i class="fa fa-credit-card"></i>
-	            </div> -->
+	            </div>
 	            <a href="#" class="small-box-footer">Mais Informações <i class="fa fa-arrow-circle-right"></i></a>
 	          </div>
-	   		</div>
+	   		</div> -->
 		
 			<div class="col-md-6">	
 			
 				<div class="box box-default">
 					
 					<div class="box-header with-border">
-		            	<h3 class="box-title">Destinatários de ativos modelo 1</h3>		            
+		            	<h3 class="box-title">Terminais com Estoque</h3>		            
 	              	</div>
 	              	
 					 <div class="box-body">
@@ -101,11 +101,43 @@
 				<div class="box box-default">
 					
 					<div class="box-header with-border">
-		            	<h3 class="box-title">Destinatários de ativos modelo 2</h3>		            
+		            	<h3 class="box-title">Não sei ainda o que informar</h3>		            
 	              	</div>
 	              	
 					<div class="box-body">
 	          		   <div id="map_div" style="height: 300px;"></div>
+					</div>
+					
+				</div>
+				
+			</div> 
+			
+			<div class="col-md-6">
+				
+				<div class="box box-default">
+					
+					<div class="box-header with-border">
+		            	<h3 class="box-title">Total de peças por status</h3>		            
+	              	</div>
+	              	
+					<div class="box-body">
+	          		    <div id="barchartId" style="height: 300px;"></div>
+					</div>
+					
+				</div>
+				
+			</div> 
+			
+			<div class="col-md-6">
+				
+				<div class="box box-default">
+					
+					<div class="box-header with-border">
+		            	<h3 class="box-title">Nível de confiança e falha ao mês</h3>		            
+	              	</div>
+	              	
+					<div class="box-body">
+	          		    <div id="curveID" style="height: 300px;"></div>
 					</div>
 					
 				</div>
@@ -200,6 +232,60 @@
 		    map.draw(data, options);
 		  };
   	  </script>
+  	  
+  	  <script type="text/javascript">
+	      google.charts.load('current', {'packages':['bar']});
+	      google.charts.setOnLoadCallback(drawChart);
+	
+	      function drawChart() {
+	        var data = google.visualization.arrayToDataTable([
+	          ['Tipo Peça', 'Ativo', 'Danificado', 'Manutenção'],
+	          ['Motor', 200, 50, 30],
+	          ['Correias', 180, 55, 10],
+	          ['Acoplamentos', 390, 100, 50],
+	          ['Redutores', 90, 10, 5]
+	        ]);
+	
+	        var options = {
+	          chart: {
+	            //title: 'Totais de tipos de peças por status'
+	            //subtitle: 'Comparação: 2014-2017',
+	          },
+	          bars: 'horizontal' // Required for Material Bar Charts.
+	        };
+	
+	        var chart = new google.charts.Bar(document.getElementById('barchartId'));
+	
+	        chart.draw(data, google.charts.Bar.convertOptions(options));
+	      }
+     </script>
+     
+     <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Mês', 'Nível Confiança', 'Nível Falha'],
+          ['JUN',  100,       80],
+          ['JUL',  90,       70],
+          ['AGO',  60,       30],
+          ['SET',  90,      80],
+          ['OUT',  100,      0],
+          ['NOV',  66,      90]
+        ]);
+		
+        var options = {
+          title: 'Ano referente - 2017',
+          //curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curveID'));
+
+        chart.draw(data, options);
+      }
+    </script>
   	 
 	</th:block>
 	

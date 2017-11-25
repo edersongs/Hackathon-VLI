@@ -11,7 +11,9 @@ insert into tsubinventario (codigo,descricao) values (1,'RECEBIMENTO');
 
 
 insert into testoque (codigoModelo, codigoFilial, codigoSubinventario, quantidade, quantidadeReserva) values (1, 1, 1, 40, 2);
-insert into testoque (codigoModelo, codigoFilial, codigoSubinventario, quantidade, quantidadeReserva) values (1, 2, 1, 55, 1);
+insert into testoque (codigoModelo, codigoFilial, codigoSubinventario, quantidade, quantidadeReserva) values (2, 2, 1, 55, 1);
+insert into testoque (codigoModelo, codigoFilial, codigoSubinventario, quantidade, quantidadeReserva) values (3, 3, 1, 40, 2);
+insert into testoque (codigoModelo, codigoFilial, codigoSubinventario, quantidade, quantidadeReserva) values (5, 4, 1, 55, 1);
 
 insert into tmovimentacaoestoque (	codigo ,codigomodelo, codigoFilialOrigem , codigoSubinventarioOrigem , codigoFilialDestino ,	codigoSubinventarioDestino , quantidade ) values (1, 1, 1, 1, 2, 1,9);
 
