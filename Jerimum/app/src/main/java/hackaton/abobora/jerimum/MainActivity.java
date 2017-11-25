@@ -13,6 +13,9 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
+    private Button btnAtivar;
+    private Button btnManutencao;
+    private Button btnDanificado;
     private Button btnReadQr;
     static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
     private TextView formatTxt, contentTxt;
@@ -31,6 +34,39 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 scanQR();
+            }
+        });
+
+        btnManutencao = (Button) findViewById(R.id.btn_manutencao);
+
+        btnManutencao.setVisibility(View.GONE);
+
+        btnManutencao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this,"Status do produto foi alterado para manutencao",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        btnDanificado = (Button) findViewById(R.id.btn_danificado);
+
+        btnDanificado.setVisibility(View.GONE);
+
+        btnDanificado.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this,"Status do produto foi alterado para danificado",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        btnAtivar = (Button) findViewById(R.id.btn_ativar);
+
+        btnAtivar.setVisibility(View.GONE);
+
+        btnAtivar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this,"Status do produto foi alterado para ativado",Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -77,8 +113,11 @@ public class MainActivity extends Activity {
                 String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
                 formatTxt.setText("FORMAT: " + format);
                 contentTxt.setText("CONTENT: " + contents);
-                Toast toast = Toast.makeText(this, "Leitura:" + contents + " Formato:" + format, Toast.LENGTH_LONG);
-                toast.show();
+//                Toast toast = Toast.makeText(this, "Leitura:" + contents + " Formato:" + format, Toast.LENGTH_LONG);
+                btnDanificado.setVisibility(View.VISIBLE);
+                btnAtivar.setVisibility(View.VISIBLE);
+                btnManutencao.setVisibility(View.VISIBLE);
+//                toast.show();
             }
         }
     }

@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,6 +8,14 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity"
     android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        >
 
     <Button
         android:id="@+id/btn_qr_code"
@@ -19,13 +27,56 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textIsSelectable="true"
+        android:textSize="18sp"
         android:layout_marginTop="30dp"
         />
 
     <TextView android:id="@+id/scan_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="18sp"
         android:textIsSelectable="true"
         />
+    </LinearLayout>
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="bottom"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:id="@+id/btn_danificado"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Danificado"
+            android:padding="5dp"
+            android:layout_margin="5dp"
+            android:textColor="@android:color/white"
+            android:background="@android:color/holo_red_dark"/>
+
+        <Button
+        android:id="@+id/btn_manutencao"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="Manutenção"
+        android:layout_margin="5dp"
+            android:padding="5dp"
+        android:textColor="@android:color/white"
+        android:background="@android:color/holo_orange_dark"/>
+
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/btn_ativar"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Ativação"
+            android:padding="5dp"
+            android:layout_margin="5dp"
+            android:textColor="@android:color/white"
+            android:background="@android:color/holo_blue_dark"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
