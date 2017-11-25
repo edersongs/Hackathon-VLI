@@ -6,6 +6,7 @@ public class Equipamento {
 
 	private Long codigo;
 	private String descricao;
+	private String criticidade;
 	private List<Peca> pecas;
 
 	public Long getCodigo() {
@@ -31,5 +32,15 @@ public class Equipamento {
 	public void setPecas(List<Peca> pecas) {
 		this.pecas = pecas;
 	}
+
+	public String getCriticidade() {
+		return criticidade;
+	}
+
+	public void setCriticidade(String criticidade) {
+		this.criticidade = criticidade;
+	}
+	
+	
 
 }
