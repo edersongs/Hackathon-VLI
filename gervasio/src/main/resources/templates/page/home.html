@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="pt" 
+	  xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="'layout/default'">
+	
+<head>
+</head>
+<body>
+
+<section layout:fragment="conteudo">
+	
+	<section class="content-header">
+		<h1>
+			DashBoard <small>Demostrativo</small>
+		</h1>
+		<ol class="breadcrumb">
+			<li><a href="#"><i class="fa fa-dashboard"></i></a></li>
+		</ol>
+	</section>
+
+	<section class="content">
+		
+		<div class="row">
+		
+			<div class="col-lg-6 col-xs-6">
+	          <div class="small-box bg-light-blue">
+	            <div class="inner">
+	              <h4>Total Peças nos Armazéns</h4>
+	
+	             <h2>1.980</h2>
+	            </div>
+	            <a href="#" class="small-box-footer">Mais Informações <i class="fa fa-arrow-circle-right"></i></a>
+	          </div>
+	        </div>
+		        
+	        <div class="col-lg-6 col-xs-6">
+	          <div class="small-box bg-blue">
+	            <div class="inner">
+	              <h4>Total Peças nos Terminais</h4>
+	
+	              <h2>990</h2>
+	            </div>
+	            <a href="#" class="small-box-footer">Mais Informações <i class="fa fa-arrow-circle-right"></i></a>
+	          </div>
+	        </div>
+		</div>
+		
+		<div class="row">
+			<div class="col-md-6">	
+			
+				<div class="box box-default">
+					
+					<div class="box-header with-border">
+		            	<h3 class="box-title">Terminais com Estoque</h3>		            
+	              	</div>
+	              	
+					 <div class="box-body">
+						<div id="regions_div" style="height: 200px;"></div>	          			
+					</div> 
+					
+				</div>
+			
+			</div>
+			
+			<div class="col-md-6">
+				
+				<div class="box box-default">
+					
+					<div class="box-header with-border">
+		            	<h3 class="box-title">Probabilidade de Falha nos Terminais</h3>		            
+	              	</div>
+	              	
+					<div class="box-body">
+	          		   <div id="donutchart" style="height: 200px;"></div>
+					</div>
+					
+				</div>
+				
+			</div> 
+			
+			<div class="col-md-6">
+				
+				<div class="box box-default">
+					
+					<div class="box-header with-border">
+		            	<h3 class="box-title">Total de peças por status</h3>		            
+	              	</div>
+	              	
+					<div class="box-body">
+	          		    <div id="barchartId" style="height: 200px;"></div>
+					</div>
+					
+				</div>
+				
+			</div> 
+			
+			<div class="col-md-6">
+				
+				<div class="box box-default">
+					
+					<div class="box-header with-border">
+		            	<h3 class="box-title">Nível de confiança e falha ao mês</h3>		            
+	              	</div>
+	              	
+					<div class="box-body">
+	          		    <div id="curveID" style="height: 200px;"></div>
+					</div>
+					
+				</div>
+				
+			</div> 
+		</div>
+	</section>
+</section>
+	
+	<th:block layout:fragment="javascript-extra">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	    <script type="text/javascript">
+	    
+	      google.charts.load('current', {
+	        'packages':['geochart'],
+	        'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+	      });
+	      
+	      google.charts.setOnLoadCallback(drawRegionsMap);
+	
+	      function drawRegionsMap() {
+	        
+	    	  var options = {
+                  region: 'BR',
+                  displayMode: 'markers',               
+                  colorAxis: {colors: ['#00853f', '#90CAF9', '#e31b23']},
+                  backgroundColor: '#DDE3E7',
+                  
+              };
+	    	  
+	    	  $.ajax({
+		        	method: 'GET',
+				  	url: '/totalAtivosFilial',
+			      	dataType: 'json',
+			      	contentType: "application/json; charset=utf-8",
+		            success: function (data) {
+		                
+		            	var array = [];		// - Definindo array que receberá os valores do Json retornado da requisição /graficoTotalQuotaGrupo
+		                var i = 0;			// - Variável para incremento
+		            	
+		                // - Percorrendo Json e armazenando valores ao array
+		                $.each(data, function () {
+		                    array.push([data[i].filial, data[i].quantidadeTotal]);
+		                    i += 1;
+		                });
+		                
+		                var lista = google.visualization.arrayToDataTable(array, true)	// - Fazendo o bind do array para o tipo ArrayDataTable do gráfico
+		             	// - Definindo o tipo de gráfico e buscando o id da div que está na tela onde o gráfico será apresentado
+		                var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+		                
+		                var formatter = new google.visualization.NumberFormat({negativeColor: 'red', negativeParens: true, pattern: '#.###'});
+		                formatter.format(lista, 1);
+		                chart.draw(lista, options);   // - Adiciona ao objeto de gráfico os dados e opções de apresentação.
+		            },
+		            error: function (XMLHttpRequest, textStatus, errorThrown) {
+		                alert('Erro ao Renderizar Gráfico ' + XMLHttpRequest + ' ' + textStatus + ' ' + errorThrown);
+		            }
+		        });
+	      }
+	    </script>
+		
+		<script type="text/javascript">
+		    google.charts.load('current', { 'packages': ['map'] });
+		    google.charts.setOnLoadCallback(drawMap);
+		
+		    function drawMap() {
+	    	var data = google.visualization.arrayToDataTable([
+	            ['Lat', 'Long', 'Name'],
+	            [-18.918999, -48.277950, 'Uberlândia Total 1.230,00'],
+	            [-16.359008, -46.899957, 'Unaí'],
+	            [-19.713535, -47.983625, 'Uberaba'],
+	            [-23.567387, -46.570383, 'São Paulo'],
+	            [-9.660822, -35.701630, 'Maceió'],
+	            [-13.014772, -38.488061, 'Salvador'],
+	            [-13.298687, -39.827605, 'Santa Inês']
+	          ]);
+	    	 
+		    var options = {
+		      showTooltip: true,
+		      showInfoWindow: true,
+		      useMapTypeControl: true,
+		      zoomLevel: 5,
+		      enableScrollWheel: true,
+		      mapType: 'normal',
+		      
+		    };
+			
+		    var map = new google.visualization.Map(document.getElementById('map_div'));
+			
+		    map.draw(data, options);
+		  };
+  	  </script>
+  	  
+  	  <script type="text/javascript">
+	      google.charts.load('current', {'packages':['bar']});
+	      google.charts.setOnLoadCallback(drawChart);
+	
+	      function drawChart() {
+	        var data = google.visualization.arrayToDataTable([
+	          ['Tipo Peça', 'Ativo', 'Danificado', 'Manutenção'],
+	          ['Motor', 200, 50, 30],
+	          ['Correias', 180, 55, 10],
+	          ['Acoplamentos', 390, 100, 50],
+	          ['Redutores', 90, 10, 5]
+	        ]);
+	
+	        var options = {
+	          chart: {
+	            //title: 'Totais de tipos de peças por status'
+	            //subtitle: 'Comparação: 2014-2017',
+	          },
+	          bars: 'horizontal' // Required for Material Bar Charts.
+	        };
+	
+	        var chart = new google.charts.Bar(document.getElementById('barchartId'));
+	
+	        chart.draw(data, google.charts.Bar.convertOptions(options));
+	      }
+     </script>
+     
+     <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Mês', 'Nível Confiança', 'Nível Falha'],
+          ['JUN',  100,       80],
+          ['JUL',  90,       70],
+          ['AGO',  60,       30],
+          ['SET',  90,      80],
+          ['OUT',  100,      0],
+          ['NOV',  66,      90]
+        ]);
+		
+        var options = {
+          title: 'Ano referente - 2017',
+          //curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curveID'));
+
+        chart.draw(data, options);
+      }
+    </script>
+	    
+	    <script type="text/javascript">
+	      google.charts.load("current", {packages:["corechart"]});
+	      google.charts.setOnLoadCallback(drawChart);
+	      function drawChart() {
+	        var data = google.visualization.arrayToDataTable([
+	          ['Terminal', 'Probabilidade Falha'],
+	          ['Araguari',     50],
+	          ['Uberaba',      39],
+	          ['Pirapora',  20],
+	          ['Guará', 59]
+	        ]);
+	
+	        var options = {
+	          //title: 'My Daily Activities',
+	          pieHole: 0.4,
+	        };
+	
+	        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+	        chart.draw(data, options);
+	      }
+	    </script>
+  	 
+	</th:block>
+	
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt" 
+	  xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="'layout/default'">
+	
+<head>
+</head>
+<body>
+
+<section layout:fragment="conteudo">
+	
+	<section class="content-header">
+		<h1>
+			Movimentação <small>Movimentação de ativos</small>
+		</h1>
+		<ol class="breadcrumb">
+			<li><a href="#"><i class="fa fa-dashboard"></i></a></li>
+		</ol>
+	</section>
+
+	<section class="content">
+		
+			<div class="box box-default">
+			
+				<div class="box-body">
+					
+					<div class="col-md-8">
+						
+						<div class="table-responsive no-padding">
+						
+							<table id="tableCheckID" class="table table-hover ">
+		                    	<thead>
+			                    	<tr>
+				                        <th>Descrição</th>
+				                        <th>Tipo Peça</th>
+				                        <th>Status</th>
+			                      	</tr>
+		                      	</thead>
+		
+		                      	<tbody>
+			                      <tr th:each="obj : ${pecas}">
+									<td th:text="${obj.descricao}"></td>
+		        					<td th:text="${obj.tipoPeca.descricao}"></td>
+		        					<td>
+										<span th:if="${obj.statusPeca.name() == 'ATIVO'}" class="label label-success" th:text="${obj.statusPeca}"></span>
+										<span th:if="${obj.statusPeca.name() == 'MANUTENCAO'}" class="label label-warning" th:text="${obj.statusPeca}"></span>
+										<span th:if="${obj.statusPeca.name() == 'DANIFICADO'}" class="label label-danger" th:text="${obj.statusPeca}"></span>
+			                        </td>
+			                        <td>
+										<button id="btnGerarQRID" th:onclick="'javascript:onClickGerarQr(\'' + ${obj.codigo} +'\');'" type="submit" class="btn btn-sm btn-primary">Gerar QR</button>
+			                        </td>
+								  </tr>
+			                    </tbody>
+			                    
+			                    <tfoot>
+						            <tr>
+						                <th></th>
+						                <th></th>
+						                <th></th>
+						            </tr>
+						        </tfoot>
+			                </table>
+						</div>
+					
+					</div>
+					
+					<div class="col-md-4">
+					
+						<div id=dvQR class="col-md-12">
+							
+          				</div>
+					
+					</div>
+					
+				</div>
+				
+			</div>
+		
+	</section>
+</section>
+	
+	<th:block layout:fragment="javascript-extra">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+		<script th:src="@{/helper/js/js-apresentar-QRCode-pecas.js}"></script>
+	</th:block>
+	
+</body>
+</html>

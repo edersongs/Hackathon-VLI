@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt" 
+	  xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="'layout/default'">
+	
+<head>
+</head>
+<body>
+
+<section layout:fragment="conteudo">
+	
+	<section class="content-header">
+		<h1>
+			Movimentação <small>Movimentação de ativos</small>
+		</h1>
+		<ol class="breadcrumb">
+			<li><a href="#"><i class="fa fa-dashboard"></i></a></li>
+		</ol>
+	</section>
+
+	<section class="content">
+		
+			<div class="box box-default">
+			
+				<table class="table table-bordered table-hover dataTable">
+					<thead>
+						<th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Código: activate to sort column descending" aria-sort="ascending">Código</th>
+						<th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Modelo: activate to sort column descending" aria-sort="ascending">Modelo</th>
+						<th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Código: activate to sort column descending" aria-sort="ascending">Filial Origem</th>
+						<th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Código: activate to sort column descending" aria-sort="ascending">Filial Destino</th>
+					</thead>
+					
+					<tbody>
+						<tr th:each="mov : ${movs}">
+							<td th:text="${mov.codigo}">Onions</td>
+							<td th:text="${mov.modelo.descricao}">Onions</td>
+        					<td th:text="${mov.filialOrigem.nome}">2.41</td>
+        					<td th:text="${mov.filialDestino.nome}">yes</td>
+						</th>
+					</tbody>
+				
+				</table>
+				
+			</div>
+		
+	</section>
+</section>
+	
+	<th:block layout:fragment="javascript-extra">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+		<script th:src="@{/helper/js/js-apresentar-QRCode.js}"></script>
+	</th:block>
+	
+</body>
+</html>

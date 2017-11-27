@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt" 
+	  xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="'layout/default'">
+	
+<head>
+</head>
+<body>
+
+<section layout:fragment="conteudo">
+	
+	<section class="content-header">
+		<h1>
+			Ativos <small>Envio de ativos</small>
+		</h1>
+		<ol class="breadcrumb">
+			<li><a href="#"><i class="fa fa-dashboard"></i></a></li>
+		</ol>
+	</section>
+
+	<section class="content">
+		
+			<div class="box box-default">
+				
+				<div class="box-header with-border">
+	            	<h3 class="box-title">Gerar QR Code</h3>
+          		</div>
+				
+				<div class="box-body">
+						
+					<div class="col-md-2">
+						<div class="input-group">
+							<label>Valor do QR</label>
+							<input id="valorID" type="text" class="form-control input-sm">
+						</div>
+					</div>
+					
+					<div class="col-md-2">
+	                    <label>Tamanho</label> 
+						<select id="tamanhoID" onchange="onClickGerarQr()" class="form-control select2 input-sm" style="width: 100%;">
+							<option label="" value=""></option>
+							<option label="120x120" value="120x120"></option>
+							<option label="250x250" value="250x250"></option>
+							<option label="300x300" value="300x300"></option>
+						</select>
+	                </div>
+          			
+          			<div id=dvQR class="col-md-12">
+          				
+          			</div>
+          			
+				</div>
+				
+			</div>
+		
+	</section>
+</section>
+	
+	<th:block layout:fragment="javascript-extra">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+		<script th:src="@{/helper/js/js-apresentar-QRCode.js}"></script>
+	</th:block>
+	
+</body>
+</html>

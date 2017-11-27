@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Jerimum</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="btn_read_qr_code">Read QR Code</string>
+</resources>

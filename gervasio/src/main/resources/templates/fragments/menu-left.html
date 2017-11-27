@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org">
+
+<aside class="main-sidebar" th:fragment="leftMenu">
+	<section class="sidebar">
+		
+		<ul class="sidebar-menu" data-widget="tree">
+			<li class="header">Menu</li>
+			
+			<!-- <li>
+				<a th:href="@{/ativos}">
+		            <i class="fa fa-user-o"></i> <span>QRCode</span>
+		            <span class="pull-right-container">
+		              <i class="fa fa-angle-left pull-right"></i>
+		            </span>
+		        </a>
+		        
+			 </li> -->
+			 
+			 <!-- <li>
+				<a th:href="@{/movimentacoes}">
+		            <i class="fa fa-history"></i> <span>Movimentacao</span>
+		            <span class="pull-right-container">
+		              <i class="fa fa-angle-left pull-right"></i>
+		            </span>
+		        </a>
+			 </li> -->
+			 
+			 <li>
+				<a th:href="@{/pecas}">
+		            <i class="fa fa-cog"></i> <span>Peças</span>
+		            <span class="pull-right-container">
+		              <i class="fa fa-angle-left pull-right"></i>
+		            </span>
+		        </a>
+			 </li>
+			 
+			 <li class="treeview">
+				<a href="#">
+		            <i class="fa fa-exchange"></i> <span>Transferência</span>
+		            <span class="pull-right-container">
+		              <i class="fa fa-angle-left pull-right"></i>
+		            </span>
+		        </a>
+		        
+		        <ul class="treeview-menu">
+		            <li><a th:href="@{/transferencias/nova}"><i class="fa fa-circle-o"></i> <span>Nova</span></a></li>
+		            
+		            <li><a th:href="@{/transferencias/}"><i class="fa fa-circle-o"></i>Consulta</a></li>
+		        </ul>
+			 </li>
+			 
+			 <li>
+				<a th:href="@{/historicos}">
+		            <i class="fa fa-history"></i> <span>Históricos</span>
+		            <span class="pull-right-container">
+		              <i class="fa fa-angle-left pull-right"></i>
+		            </span>
+		        </a>
+			 </li>
+			 
+			 <li>
+				<a th:href="@{/fornecedores}">
+		            <i class="fa fa-internet-explorer"></i> <span>Portal Fornecedor</span>
+		            <span class="pull-right-container">
+		              <i class="fa fa-angle-left pull-right"></i>
+		            </span>
+		        </a>
+			 </li>
+			 
+		</ul>
+	</section>
+</aside>
+</html>
